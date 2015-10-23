@@ -1,3 +1,39 @@
-#page-wrapper {
-	background-color: lightblue;
+
+body {
+	font-family: Verdana, sans-serif;
+	text-align: center;
+	background-image: url("datashe.jpg");
+	background-size: cover;
+	color: whitesmoke;
+
+}
+
+.form-control {
+	width: 130px;
+	display: inline;
+}
+
+p {
+	font-size: 18px;
+}
+
+.flexbox {
+	display: flex;
+}
+
+.flex1 {
+	flex: 1;
+}
+
+#bio {
+	width: 450px;
+	color: black;
+}
+
+.preference-form {
+	margin-top: 50px;
+}
+
+.btn-primary:hover {
+	background-color: darkslateblue;
 }

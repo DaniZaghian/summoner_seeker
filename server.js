@@ -13,11 +13,17 @@ app.use(express.static("public"));
 app.use(bodyParser.urlencoded({extended: true}));
 
 
-app.get('/', function(req, res) {
+app.get('/', function (req, res) {
   res.render("index");
 });
 
+app.get('/info', function (req, res){
+	console.log("working!!!!!!!!!!!!");
+  res.render("info");
+});
+
+
 app.listen(process.env.PORT || 3000, function() {
-  console.log("express-heroku-starter is running on port 3000");
+  console.log("summoner seeker is running on port 3000");
 });
 
