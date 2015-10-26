@@ -10,11 +10,13 @@ var UserSchema = new Schema({
   teemo: Boolean,
   toxic: Number,
   bio: String,
-  username: String,
-  summId: Number,
+  sumName: String,
+  sumId: Number,
   email: String,
   passwordDigest: String
 });
+
+//need to add sumname, email and password on 3rd page
 
 
 

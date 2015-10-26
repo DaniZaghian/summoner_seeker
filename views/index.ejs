@@ -88,7 +88,7 @@
               <p>Your Rank:</p>
 
               <div class="form-group">
-                <select name="rank" class="form-control">
+                <select name="rank" class="form-control selector">
                   <option>Bronze</option>
                   <option>Silver</option>
                   <option>Gold</option>
@@ -105,7 +105,7 @@
               <p>Teemo:</p>
 
               <label class="radio-inline"><input type="radio" name="teemo">Love</label>
-              <label class="radio-inline"><input type="radio" name="optradio">Hate</label>
+              <label class="radio-inline"><input type="radio" name="teemo">Hate</label>
 
             </div>
           </div>
@@ -114,7 +114,7 @@
               <p>On a scale of 1-5 (1 being not toxic and 5 being very<br /> toxic), how would your friends rate you? Be honest:</p>
 
               <div class="form-group">
-                <select name="toxic" class="form-control">
+                <select name="toxic" class="form-control selector">
                   <option>1</option>
                   <option>2</option>
                   <option>3</option>
@@ -128,12 +128,40 @@
           <br />
           <div class="form-group">
             <label for="bio">Short Bio:</label><br />
-            <textarea class="bio" rows="5" id="bio" placeholder = "A little about yourself"></textarea>
+            <textarea name = "bio" class="bio" rows="5" id="bio" placeholder = "A little about yourself"></textarea>
+          </div>
+          
+          <!--button triggers Modal -->
+          <button type="submit" class="btn btn-info" data-toggle="modal" data-target="#signUpModal">Submit</button>
+
+
+          <!-- Modal -->
+          <div class="modal fade" id="signUpModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                  <h4 class="modal-title" id="myModalLabel">Sign Up</h4>
+                </div>
+                <div class="modal-body">
+
+                  <span class="label">Email:</span>
+                  <input type="email" name="email"class="form-control" required="required" placeholder="Email"><br />
+
+                  <span class="label">LoL Summoner Name:</span>
+                  <input type="text" name="sumName" class="form-control" required="required" placeholder="Summoner Name"><br />
+                
+                  <span class="label">Password:</span>
+                  <input type="password" name="password" class="form-control" required="required" placeholder="Password"><br />
+                </div>
+                <div class="modal-footer">
+                  <button type="button" id="signUpButton" class="btn btn-primary">Sign Up!</button>
+                </div>
+              </div>
+            </div>
           </div>
 
-          <button type="submit" class="btn btn-info">Submit</button>
-
-
+          
         </form>
 
       </div>

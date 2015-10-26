@@ -65,7 +65,7 @@ $(document).ready(function(){
     rolesHTML();
     prefRolesHTML();
 
-    $('#2ndform').on('submit', function (e) {
+    $('#signUpButton').on('submit', function (e) {
     	e.preventDefault();
     	rolesFormat();
     	prefRolesFormat();
@@ -85,3 +85,6 @@ $(document).ready(function(){
     });
 
 });
+
+//need to implement:
+//if love is checked, teemo is true
