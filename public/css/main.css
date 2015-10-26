@@ -37,3 +37,8 @@ p {
 .btn-primary:hover {
 	background-color: darkslateblue;
 }
+
+#signUpModal p {
+	color: dimgray;
+	text-align: left;
+}

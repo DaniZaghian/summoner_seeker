@@ -62,18 +62,38 @@ $(document).ready(function(){
     	});
     }
 
+    function teemo (){
+   		$("input[name=teemo]:checked").val();
+   	}
+
     rolesHTML();
     prefRolesHTML();
 
-    $('#signUpButton').on('submit', function (e) {
+    $('#signUpButton').on('click', function (e) {
     	e.preventDefault();
     	rolesFormat();
     	prefRolesFormat();
+    	teemo();
+
+    	//use sumName to get sumId from LoL API
+    	var summonerName = $('#sumName').val().toLowerCase();
+    	var url = 'https://na.api.pvp.net/api/lol/na/v1.4/summoner/by-name/'+ summonerName +'?api_key=499c7924-f226-4db2-8f05-766de06ea4bb';
+    	$.ajax({
+			url: url
+		}).done(function(summonerObj){
+
+		var sumIdToSend = summonerObj[summonerName].id;
+    	$('sumIdSpace').html('<input type="hidden" name="sumId" value='+sumIdToSend+'>');
+    	$('sumIdSpace').val();
+		});
+
+    	//send form to server
     	var $user = $("#2ndform").serialize();
     	console.log($user);
     	$.post('/api/users', $user, function(data){
       		console.log(data);
     	});
+
 
     	$.ajax({
     		method: "GET",

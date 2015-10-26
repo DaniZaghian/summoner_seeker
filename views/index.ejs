@@ -104,8 +104,8 @@
               <br /><br />
               <p>Teemo:</p>
 
-              <label class="radio-inline"><input type="radio" name="teemo">Love</label>
-              <label class="radio-inline"><input type="radio" name="teemo">Hate</label>
+              <label class="radio-inline"><input type="radio" name="teemo" value="Love">Love</label>
+              <label class="radio-inline"><input type="radio" name="teemo" value="Hate">Hate</label>
 
             </div>
           </div>
@@ -141,18 +141,20 @@
               <div class="modal-content">
                 <div class="modal-header">
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                  <h4 class="modal-title" id="myModalLabel">Sign Up</h4>
+                  <p id="createProf">Create your profile</p>
                 </div>
                 <div class="modal-body">
 
-                  <span class="label">Email:</span>
-                  <input type="email" name="email"class="form-control" required="required" placeholder="Email"><br />
+                  <p> Email: </p>
+                  <input type="email" name="email"class="form-control" required="required" placeholder="your email"><br />
 
-                  <span class="label">LoL Summoner Name:</span>
-                  <input type="text" name="sumName" class="form-control" required="required" placeholder="Summoner Name"><br />
-                
-                  <span class="label">Password:</span>
-                  <input type="password" name="password" class="form-control" required="required" placeholder="Password"><br />
+                  <p> LoL Summoner Name: </p>
+                  <input type="text" name="sumName" id="sumName" class="form-control" required="required" placeholder="your IGN"><br />
+
+                  <input type="hidden" name="sumId" class="form-control" value="">
+                  
+                  <p> Password: </p>
+                  <input type="password" name="password" class="form-control" required="required" placeholder="password"><br />
                 </div>
                 <div class="modal-footer">
                   <button type="button" id="signUpButton" class="btn btn-primary">Sign Up!</button>

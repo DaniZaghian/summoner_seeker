@@ -7,7 +7,7 @@ var UserSchema = new Schema({
   roles: [String],
   prefRoles: [String],
   rank: String,
-  teemo: Boolean,
+  teemo: String,
   toxic: Number,
   bio: String,
   sumName: String,
