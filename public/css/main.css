@@ -42,3 +42,7 @@ p {
 	color: dimgray;
 	text-align: left;
 }
+
+#login-button {
+	float: right;
+}

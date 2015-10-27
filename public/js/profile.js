@@ -2,8 +2,9 @@ console.log('Sanity Check, profile.js linked');
 
 $(document).ready(function(){
 
-	// http://localhost:3000/profile/?sumName=asteryl
-	var sumName = location.search.split('sumName=')[1];
+	// http://localhost:3000/profile/asteryl
+	var sumName = $('#sumName').val();
+	console.log(sumName);
 	if(sumName){
 		readUser(sumName);
 	}
@@ -40,10 +41,12 @@ $(document).ready(function(){
 	 function findMaxPlayedId (data){
 	 	var maxIndex = 0;
 	 	//find the maximum number of total sessions played, get id
-	 	for (var j = 1; j < (data.champions.length -1); j++){
-	 		if (data.champions[j].stats.totalSessionsPlayed > data.champions[maxIndex].stats.totalSessionsPlayed){
-	 			maxIndex = j;
-	 		}
+	 	for (var j = 1; j < (data.champions.length); j++){
+	 		if (data.champions[j].id !== 0){
+		 		if (data.champions[j].stats.totalSessionsPlayed > data.champions[maxIndex].stats.totalSessionsPlayed){
+		 			maxIndex = j;
+		 		}
+		 	}
 	 	}
 	 	var champId = data.champions[maxIndex].id;
 	 	return champId;

@@ -86,9 +86,9 @@ $(document).ready(function(){
       		console.log(data);
       		$.ajax({
 	    		method: "GET",
-	    		url: "/profile",
+	    		url: "/profile/" + $('#sumName').val(),
 	    		success: function(data){
-	    			window.location ='/profile';
+	    			window.location ='/profile/' + $('#sumName').val();
     			}
     		});
     	});

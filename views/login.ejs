@@ -17,33 +17,31 @@
 
 </head>
 
-<body>
+  <body>
 
-  <div class="container">
+    <div class="container">
+
+      <div class ="row">
+
+        <form action="/sessions" method="POST" role="form">
+          <legend>Log In</legend>
+        
+          <div class="form-group">
+            <label for="">Summoner Name</label>
+            <input type="text" name="sumName" class="form-control" placeholder="your summoner name">
+            <label for="">Password</label>
+            <input type="password" name="password" class="form-control" placeholder="password">
+          </div>
     
-    <div class="row">
+          
+        
+          <button type="Log In" class="btn btn-info">Submit</button>
+        </form>
 
-    <input type="hidden" name="sumName" id="sumName" class="form-control" value="<%= user.sumName%>">
-
-      <div class ="stuff">
-        <p>Most Played:</p><br />
-
-        <% if (user && user.sumName) { %>
-              <a href="/logout" class="btn btn-info">Log Out</a>
-            <% } else { %>
-              You're not logged in. </h2>
-              <a href="/login">Log in</a>
-            <% } %>
-       
-      </div><br />
-      <div class ="rank">
       </div>
+      
+    </div>  
 
-    </div>
-    
-  </div>
-</body>
+  </body>
 
 </html>
-
-
