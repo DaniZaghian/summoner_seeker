@@ -16,8 +16,16 @@ app.get('/', function (req, res) {
   res.render("index");
 });
 
+//profile page
 app.get('/profile', function (req, res){
   res.render("profile");
+});
+
+app.get('/api/user/:sumName1', function (req, res){
+  var sumName2 = req.params.sumName1;
+  db.User.findOne({sumName: sumName2}, function(err, user){
+    res.json(user);
+  });
 });
 
 
