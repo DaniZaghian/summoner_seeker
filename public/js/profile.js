@@ -32,11 +32,31 @@ $(document).ready(function(){
 	function renderStuff (){
 		$('.sumName').append(userObj.sumName);
 		$('.rank').append(userObj.rank);
-		$('.roles').append(userObj.roles);
+		displayRoles(userObj.roles);
+		displayPrefRoles(userObj.prefRoles);
 		$('.teemo').append(userObj.teemo);
 		$('.toxic').append(userObj.toxic);
 		$('.bio').append(userObj.bio);
 
+	}
+
+	//displays roles array 
+	function displayRoles(arr) {
+		for (var i=0; i < arr.length; i++){
+			if (arr[i]) {
+				$(".roles").append(arr[i]+ " ");
+
+			}
+		}
+	}
+	//displays prefRoles array
+	function displayPrefRoles(arr) {
+		for (var i=0; i < arr.length; i++){
+			if (arr[i]) {
+				$(".prefRoles").append(arr[i]+ " ");
+
+			}
+		}
 	}
 
 	//find most played champ, render stuff on page

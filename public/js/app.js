@@ -5,7 +5,9 @@ $(document).ready(function(){
 
 	var $form1 = $('#landing-page-form');
 	var $form2 = $('#preference-form');
+    //hide the second form
 	$form2.hide();
+    //when first form is submitted, slide in second form
 	$form1.on('submit', function (e){
 		e.preventDefault();
 		
@@ -18,6 +20,7 @@ $(document).ready(function(){
 		}
 	});
 
+    //generate roles array based on checkboxes selected
     function rolesHTML () {
     	var roles = ["Top", "Jungle", "Mid", "Marksman", "Support"];
 		var html = '';
@@ -29,7 +32,8 @@ $(document).ready(function(){
     	$('#roles-buttons').html(html);
     }
 
-     function prefRolesHTML () {
+    //generate prefRoles array bbased on checkboxes selected
+    function prefRolesHTML () {
     	var roles = ["Top", "Jungle", "Mid", "Marksman", "Support"];
 		var html = '';
     	roles.forEach(function (role){
@@ -40,6 +44,7 @@ $(document).ready(function(){
     	$('#prefRoles-buttons').html(html);
     }
 
+    //part of roles array generation
     function rolesFormat () {
     	$.each($("input[name='roles']"), function() {
     		if ($(this).parent().hasClass('active')) {
@@ -51,6 +56,7 @@ $(document).ready(function(){
     	});
     }
 
+    //part of prefroles array generation
     function prefRolesFormat () {
     	$.each($("input[name='prefRoles']"), function() {
     		if ($(this).parent().hasClass('active')) {
@@ -62,6 +68,7 @@ $(document).ready(function(){
     	});
     }
 
+    //performs ajax call to get summoner id based on sumName entered
    	function createSumId () {
    		//use sumName to get sumId from LoL API
     	var summonerName = $('#sumName').val().toLowerCase();
@@ -78,16 +85,17 @@ $(document).ready(function(){
 		});
    	}
 
+    //when the user submits the whole form, serialize it and send to db
    	function submitForm () {
 		//send form to server
     	var $user = $("#2ndform").serialize();
-    	console.log($user);
     	$.post('/api/users', $user, function(data){
       		console.log(data);
       		$.ajax({
 	    		method: "GET",
 	    		url: "/profile/" + $('#sumName').val(),
 	    		success: function(data){
+                    //redirect to their profile
 	    			window.location ='/profile/' + $('#sumName').val();
     			}
     		});
@@ -97,6 +105,7 @@ $(document).ready(function(){
     rolesHTML();
     prefRolesHTML();
 
+    //do everything when button is clicked
     $('#signUpButton').on('click', function (e) {
     	e.preventDefault();
     	rolesFormat();

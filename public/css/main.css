@@ -50,10 +50,19 @@ p {
 	float: right;
 }
 
+#signup-button{
+    float: right;
+}
+
 .summonersItem {
     display: inline-block;
     padding: 20px;
 }
+
+#stuff {
+    text-align: left;
+}
+
 /*navbar css*/
 
 .navbar {
@@ -67,7 +76,7 @@ p {
 }
 
 .navbar .navbar-nav li a:hover {
-    color: lightskyblue;
+    color: rgb(102,131,199)
 }
 
 .navbar-nav.navbar-right .btn { 
