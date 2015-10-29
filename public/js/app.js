@@ -14,7 +14,7 @@ $(document).ready(function(){
 	setTimeout(showForm2, 800);
 
 		function showForm2 () {
-	   		$form2.show(1000);
+	   		$form2.show(1200);
 		}
 	});
 

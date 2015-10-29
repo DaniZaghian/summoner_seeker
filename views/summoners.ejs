@@ -13,12 +13,23 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
   <!-- Custom -->
   <link rel="stylesheet" type="text/css" href="/css/main.css">
-  <script src="/js/profile.js"></script>
-
+  <script>
+    var summoners = <%- JSON.stringify(summoners) %>;
+  </script>
+  <script src="/js/summoners.js"></script>
 </head>
 
-<body>
+<style>
+  body {
+    background-image: url("/css/ezreal.jpg");
+    background-repeat: no-repeat;
+    background-color: rgb(102,131,199);
+    background-position: 0% 57px;
+  }
+  </style>
 
+<body>
+      
   <nav class="navbar navbar-default" role="navigation">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
@@ -54,55 +65,26 @@
       </ul>
     </div><!-- /.navbar-collapse -->
   </nav>
-
+   
+     
+  <input type="hidden" name="sumName" id="sumName" class="form-control" value="<%= currentUser.sumName%>">
 
   <div class="container">
-    
     <div class="row">
 
-    <input type="hidden" name="sumName" id="sumName" class="form-control" value="<%= user.sumName%>">
-
-
-      <div class ="stuff">
-        <p>Most Played:</p><br />
-
-        <div class ="sumName">
-        </div>
-
-        <div class ="mostPlayedPic">
-        </div>
-        
-        <div>
-          <p class="rank"></p>
-        </div>
-
-        <div>
-          <p class ="roles"> My preferred roles: </p>
-        </div>
-
-        <div>
-          <p class="prefRoles"> </p>
-        </div>
-
-        <div>
-          <p> I <span class ="teemo"></span> Teemo</p>
-        </div>
-
-        <div>
-          <p> I rate myself <span class="toxic"></span> out of 5 on the toxic scale</p>
-        </div>
-
-        <div>
-          <p class="bio">My bio: </p>
-        </div>
-
+        <% for(var i=0; i<summoners.length; i++) { %>
+            <div id="summoners-item-<%=summoners[i].sumId%>" class="summonersItem">
+              <h3><%=summoners[i].sumName%></h3>
+              <div id="summoners-pic-<%=summoners[i].sumId%>"></div>
+              <h3><%=summoners[i].rank%></h3>
+            </div>
+      <% } %>
       </div>
-
-    </div>
-    
+        
   </div>
+
+
 </body>
 
 </html>
-
 

@@ -10,7 +10,6 @@ $(document).ready(function(){
 
 	// http://localhost:3000/profile/asteryl
 	var sumName = $('#sumName').val();
-	console.log(sumName);
 	if(sumName){
 		readUser(sumName);
 	}
@@ -23,29 +22,39 @@ $(document).ready(function(){
 	    complete: function(resUser) {
 	    	console.log(resUser.responseJSON);
 	    	userObj = resUser.responseJSON;
-	    	getMostPlayedChamp();
-	    	renderStuff();
+	    	
 	    }
 	  });
 	}
 
-	function renderStuff (){
-		$('.sumName').append(userObj.sumName);
-		$('.rank').append(userObj.rank);
-		$('.roles').append(userObj.roles);
-		$('.teemo').append(userObj.teemo);
-		$('.toxic').append(userObj.toxic);
-		$('.bio').append(userObj.bio);
+	console.log(summoners);
+	renderSummonerChamps();
 
+	function addSummonerClick(summoner) {
+		$("#summoners-item-"+summoner.sumId).click(function() {
+			clickSummoner(summoner.sumName);
+		});
+	}
+
+	function clickSummoner(sumName) {
+		window.location ="/profile/"+sumName;
+	}
+
+	function renderSummonerChamps (){
+		for (var i =0; i < summoners.length; i++){
+			getMostPlayedChamp(summoners[i].sumId);
+			// also add click handler
+			addSummonerClick(summoners[i]);
+		}
 	}
 
 	//find most played champ, render stuff on page
-	function getMostPlayedChamp () {
-		var sumUrl = "https://na.api.pvp.net//api/lol/na/v1.3/stats/by-summoner/"+userObj.sumId+"/ranked?api_key=499c7924-f226-4db2-8f05-766de06ea4bb";   			
+	function getMostPlayedChamp (sumId) {
+		var sumUrl = "https://na.api.pvp.net//api/lol/na/v1.3/stats/by-summoner/"+sumId+"/ranked?api_key=499c7924-f226-4db2-8f05-766de06ea4bb";   			
 		$.ajax({
 			url: sumUrl
 		}).done(function (data){ 
-			findChamp(findMaxPlayedId(data));
+			findChamp(findMaxPlayedId(data), sumId);
 		});
 	}
 
@@ -65,16 +74,13 @@ $(document).ready(function(){
 	 }
 
 	//based on id found in findMaxPlayedId, pulls info from champ api
-	function findChamp (id) {
+	function findChamp (id, sumId) {
 		var champUrl = "https://global.api.pvp.net/api/lol/static-data/na/v1.2/champion/"+id+"?champData=image&api_key=499c7924-f226-4db2-8f05-766de06ea4bb";
 		$.ajax({
 	 	url: champUrl
 	 }).done(function (data) {
-	 	$(".mostPlayedPic").append("<img src = http://ddragon.leagueoflegends.com/cdn/5.7.2/img/champion/"+data.image.full+">");
+	 	$("#summoners-pic-"+sumId).append("<img src = http://ddragon.leagueoflegends.com/cdn/5.7.2/img/champion/"+data.image.full+">");
 	 });
-
-	 //TODO
-	 //render last 5 games if data.games[i].subType === "RANKED_SOLO_5x5"
 	 	
 	}
 

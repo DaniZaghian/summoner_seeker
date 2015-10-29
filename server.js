@@ -7,6 +7,7 @@ var bodyParser = require("body-parser");
 var mongoose = require("mongoose");
 var session = require('express-session');
 var db = require("./models");
+var request = require('request');
 
 app.set("view engine", "ejs");
 
@@ -26,22 +27,32 @@ app.get('/', function (req, res) {
 });
 
 //profile page
+
+//if someone is logged in,
+ //check who it is
+ //
+//otherwise, show them log in page
 app.get('/profile/:sumName', function (req, res){
 	if(req.session.userId){
-		db.User.findOne({sumName: req.params.sumName}, function (err, foundUser) {
-	    if (!foundUser){
-	      console.log('database error: ', err);
-	      res.send('User not found');
-	    } else {
-	      // render profile template with user's data
-	      console.log('loading profile of found user');
-	      res.render('profile', {user: foundUser});
-	    }
+		db.User.findOne({_id: req.session.userId}, function (err, currentUser) {
+			db.User.findOne({sumName: req.params.sumName}, function (err, foundUser) {
+		    if (!foundUser){
+		      console.log('database error: ', err);
+		      res.render('usernotfound', {currentUser: currentUser});
+
+		    } else {
+		      // render profile template with user's data
+		      console.log('founduser is: ' + foundUser);
+		      console.log('currentuser is ' + currentUser);
+		      res.render('profile', {user: foundUser, currentUser: currentUser});
+		    }
+	  		});
   		});
 	}
 	else {
-		res.send('Please sign in');
+		res.render('loggedout');
 	}
+
 });
 
 app.get('/api/user/:sumName1', function (req, res){
@@ -51,7 +62,7 @@ app.get('/api/user/:sumName1', function (req, res){
   });
 });
 
-// show the login form
+// login page
 app.get('/login', function (req, res) {
   res.render('login');
 });
@@ -71,6 +82,27 @@ app.post('/sessions', function (req, res) {
   });
 });
 
+
+app.get('/summoners', function (req, res) {
+	if(req.session.userId){
+		db.User.findOne({_id: req.session.userId}, function (err, foundUser) {
+	    if (!foundUser){
+	      console.log('database error: ', err);
+	      res.send('User not found');
+	    } else {
+	    	db.User.find(function (err, allUsers){
+		    // render profile template with user's data
+		    res.render('summoners', {currentUser: foundUser, summoners: allUsers});
+	      	});
+	      }
+  		});
+	}
+	else {
+		res.render('loggedout');
+	}
+
+});
+
 //when creating new user, create session
 app.post('/api/users', function (req, res) {
 	var newUser = req.body;
@@ -82,12 +114,20 @@ app.post('/api/users', function (req, res) {
 	});
   });
 
+app.get('/api/users', function (req,res) {
+  db.User.find(function(err, users){
+    res.json(users);
+  });
+});
+
+//when you hit logout, sets session to null and redirects to login
 app.get('/logout', function (req, res) {
   // remove the session user id
   req.session.userId = null;
   // redirect to login (for now)
-  res.redirect('/login');
+  res.render('loggedout');
 });
+
 
 app.listen(process.env.PORT || 3000, function() {
   console.log("summoner seeker is running on port 3000");
