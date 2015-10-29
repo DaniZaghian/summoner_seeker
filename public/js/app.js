@@ -72,7 +72,7 @@ $(document).ready(function(){
    	function createSumId () {
    		//use sumName to get sumId from LoL API
     	var summonerName = $('#sumName').val().toLowerCase();
-    	var url = 'https://na.api.pvp.net/api/lol/na/v1.4/summoner/by-name/'+ summonerName +'?api_key=499c7924-f226-4db2-8f05-766de06ea4bb';
+    	var url = 'https://na.api.pvp.net/api/lol/na/v1.4/summoner/by-name/'+ summonerName +'?api_key=+499c7924-f226-4db2-8f05-766de06ea4bb';
    		$.ajax({
 			url: url
 		}).done(function(summonerObj){

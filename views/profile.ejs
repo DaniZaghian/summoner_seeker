@@ -17,6 +17,19 @@
 
 </head>
 
+<style>
+  .navbar {
+    background: rgb(22,14,59);
+  }
+  .btn-info {
+      background: rgb(22,14,59);
+      border: rgb(22,14,59);
+    }
+    .btn-info:hover{
+      background: rgb(0,197,246);
+    }
+</style>
+
 <body>
 
   <nav class="navbar navbar-default" role="navigation">
@@ -63,41 +76,44 @@
     <input type="hidden" name="sumName" id="sumName" class="form-control" value="<%= user.sumName%>">
 
 
-      <div id ="stuff">
+      <div class ="stuff">
 
         <div>
-          <p class="sumName">
+          <p id="db" class="sumName">
         </div>
 
         <p>Most Played:</p><br />
-        <div class ="mostPlayedPic">
+        <div id="db" class ="mostPlayedPic">
         </div>
         
         <div>
-          <p class="rank"></p>
+          <p id="db" class="rank"></p>
         </div>
 
         <div>
-          <p class ="roles"> My preferred roles: </p>
+          <p>My preferred roles: </p>
+          <p id="db" class ="roles"></p>
         </div>
 
         <div>
-          <p class ="prefRoles"> I prefer my duo partner to play these roles: </p>
+          <p id="db" class ="prefRoles"> I prefer my duo partner to play these roles: </p>
         </div>
 
         <div>
-          <p> I <span class ="teemo"></span> Teemo</p>
+          <p id="db"> I <span class ="teemo"></span> Teemo</p>
         </div>
 
         <div>
-          <p> I rate myself <span class="toxic"></span> out of 5 on the toxic scale</p>
+          <p id="db"> I rate myself <span class="toxic"></span> out of 5 on the toxic scale</p>
         </div>
 
         <div>
-          <p class="bio">My bio: </p>
+          <p id="db" class="bio">My bio: </p>
         </div>
 
       </div>
+
+      <a href="#"><button type="button" id="login-button" class="btn btn-info pull-left">Let's Duo!</button></a>
 
     </div>
     

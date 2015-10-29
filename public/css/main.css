@@ -46,12 +46,23 @@ p {
 	text-align: left;
 }
 
-#login-button {
-	float: right;
+#signup-login-txt { 
+    display:inline-block;
+    float: right;
+    margin-top: 20px;
 }
 
-#signup-button{
-    float: right;
+.page-header {
+    margin-top: 100px;
+}
+
+#login-form {
+    margin-top: 100px;
+}
+
+#login-form legend{
+    color: whitesmoke;
+    font-size: 36px;
 }
 
 .summonersItem {
@@ -59,16 +70,26 @@ p {
     padding: 20px;
 }
 
-#stuff {
+
+p #db {
+    color: whitesmoke;
+}
+
+.stuff {
     text-align: left;
+    color: rgb(22,14,59);
 }
 
 /*navbar css*/
 
+.btn-info {
+    border-radius: 50px;
+}
+
 .navbar {
     padding-top: 4px;
-    background: linear-gradient(black, #303030);
-    border-bottom: solid 2px #101010;
+    background: dimgray;
+    border: none;
 }
 
 .navbar .navbar-nav li a {

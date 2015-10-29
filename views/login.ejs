@@ -22,6 +22,14 @@
     background-position: 0% 0px;
     background-color: rgb(105,65,102);
   }
+
+  .btn-info {
+    background: rgb(48,35,78);
+    border: rgb(48,35,78);
+  }
+  .btn-info:hover{
+    background: rgb(127,38,58);
+  }
   </style>
 
 </head>
@@ -30,24 +38,29 @@
 
     <div class="container">
 
-    <p id="signup-login-btn">Don't have an account?</p><a href="/"><button type="button" id="signup-button" class="btn btn-info">Sign Up</button></a>
+      <div id="signup-login-txt">
+            <span>Don't have an account? </span>
+            <span><a href="/"><button type="button" id="signup-button" class="btn btn-info">Sign Up</button></a></span>
+      </div>
 
-      <div class ="row">
-
-        <form action="/sessions" method="POST" role="form">
-          <legend>Log In</legend>
-        
-          <div class="form-group">
-            <label for="">Summoner Name</label>
-            <input type="text" name="sumName" class="form-control" placeholder="your summoner name">
-            <label for="">Password</label>
-            <input type="password" name="password" class="form-control" placeholder="password">
-          </div>
-    
-          
-        
-          <button type="Log In" class="btn btn-info">Submit</button>
-        </form>
+        <div class="col-sm-6 col-sm-offset-3">
+              <form action="/sessions" method="POST" class="form-horizontal" id="login-form" role="form">
+                  <div class="form-group">
+                    <legend>Log In</legend>
+                  </div>
+              
+                  <div class="form-group">
+                    <label for="">Summoner Name</label>
+                    <input type="text" name="sumName" class="form-control" placeholder="your summoner name"><br />
+                    <label for="">Password</label>
+                    <input type="password" name="password" class="form-control" placeholder="password">
+                  </div>
+              
+                  <div class="form-group">
+                      <button type="Log In" class="btn btn-info">Submit</button>
+                  </div>
+              </form>
+        </div>
 
       </div>
       
