@@ -134,7 +134,7 @@ app.post("/api/:sumName/messages", function(req,res){
 	var newMessage = new Message({subject: messageContent.subject, content: messageContent.content, sender: req.session.userId});
 	console.log(newMessage);
 	db.User.findOne({sumName: req.params.sumName}, function(err, userData){
-		userData.messages.push(newMessage);
+		userData.messages.unshift(newMessage);
 		userData.save();
 		console.log(userData);
 		res.send(userData);
