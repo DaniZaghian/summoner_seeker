@@ -5,4 +5,3 @@ mongoose.connect( process.env.MONGOLAB_URI ||
                       "mongodb://localhost/summoner_seeker" );
 
 module.exports.User = require("./user.js");
-

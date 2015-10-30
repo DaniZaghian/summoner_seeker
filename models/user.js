@@ -1,7 +1,7 @@
 var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 var bcrypt = require("bcrypt");
-
+var Message = require("./message.js");
 // define user schema
 var UserSchema = new Schema({
   roles: [String],
@@ -10,11 +10,16 @@ var UserSchema = new Schema({
   teemo: String,
   toxic: Number,
   bio: String,
-  sumName: String,
+  sumName: {type: String, require: true},
   sumId: Number,
-  email: String,
-  passwordDigest: String
+  email: {type: String, require: true, set: toLower},
+  passwordDigest: {type: String, required: true, minlength: 7},
+  messages: [Message.schema]
 });
+
+function toLower (v) {
+  return v.toLowerCase();
+}
 
 UserSchema.statics.createSecure = function (newUser, callback) {
   
@@ -36,7 +41,8 @@ UserSchema.statics.createSecure = function (newUser, callback) {
         sumName: newUser.sumName,
         sumId: newUser.sumId,
         email: newUser.email,
-        passwordDigest: hash
+        passwordDigest: hash,
+        messages: []
       }, callback);
     });
   });
@@ -72,7 +78,6 @@ UserSchema.methods.checkPassword = function (password) {
 
 // define user model
 var User = mongoose.model('User', UserSchema);
-
 
 module.exports = User;
 

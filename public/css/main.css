@@ -71,19 +71,57 @@ p {
 }
 
 
-p #db {
-    color: whitesmoke;
-}
-
-.stuff {
-    text-align: left;
+.stuff p #db {
     color: rgb(22,14,59);
 }
 
+.stuff {
+    background-color: rgba(0, 0, 0, 0.4);
+    text-align: left;
+}
+
+.stuff small{
+    font-size: 16px;
+}
+
+.otherstuff {
+    background-color: rgba(0, 0, 0, 0.4);
+    text-align: center;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+    padding-top: 10px;
+}
+.otherstuff2 {
+    background-color: rgba(0, 0, 0, 0.4);
+    text-align: center;
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 30px;
+    padding-bottom: 10px;
+}
+#allstuff {
+    border-radius: 30px;
+}
+
+#modal-id {
+    color: rgb(22,14,59);
+}
+
+.summonersItem p {
+    font-size: 22px;
+}
+.summonersItem h4 {
+    color: silver;
+}
 /*navbar css*/
 
 .btn-info {
+    width: 90px;
+    padding: 10px;
     border-radius: 50px;
+}
+
+.navbar-brand {
+    margin-top: -12px;
 }
 
 .navbar {

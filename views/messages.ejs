@@ -30,6 +30,7 @@
     }
 </style>
 
+
 <body>
 
   <nav class="navbar navbar-default" role="navigation">
@@ -69,74 +70,22 @@
     </div><!-- /.navbar-collapse -->
   </nav>
 
-
+  <input type="hidden" name="sumName" id="sumName" class="form-control" value="<%= user.sumName%>">
   <div class="container">
     
     <div class="row">
 
-    <input type="hidden" name="sumName" id="sumName" class="form-control" value="<%= user.sumName%>">
-
-
-        <div class ="otherstuff col-sm-6 col-sm-offset-3">
-          <p style="font-size: 20px" class="sumName"></p>
-
-          <p style="font-size: 20px" class="rank"></p>
-
-          <p style="color:rgb(22,14,59)"><b>Most Played:</b></p>
-            <div class ="mostPlayedPic">
-            </div><br />
-        </div>
-
-          <div class ="stuff col-sm-6 col-sm-offset-3">
-         
-          <p style="color:rgb(22,14,59)"><b>My preferred roles: </b></p><small class ="roles"></small><br /><br />
-
-          <p style="color:rgb(22,14,59)"><b>I prefer my duo partner to play these roles: </b></p>
-          <small class="prefRoles"></small><br /><br />
-
-          <p>I <small style="color:rgb(22,14,59)"><b><span class ="teemo"></span></b></small> Teemo</p>
-
-          <p> I rate myself <small style="color:rgb(22,14,59)"><b><span class="toxic"></span></b></small> out of 5 on the toxic scale</p>
-
-          <p style="color:rgb(22,14,59)"><b>My bio: </b></p>
-          <small class="bio"></small><br /><br />
-
-          </div>
-
-          <div class ="otherstuff2 col-sm-6 col-sm-offset-3">
-
-            <a data-toggle="modal" href="#modal-id"><button type="button" id="login-button" class="btn btn-info">Let's Duo!</button></a>
-
-          </div>
-        </div>
-
-      <div class="modal fade" id="modal-id">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-              <h4 class="modal-title">Message</h4>
-            </div>
-            <form id="messageForm">
-              <div class="modal-body">
-                <label>Subject:</label>
-                <input type="text" name="subject" id="subject" class="form-control" value="" required="required"><br />
-                <label>Message:</label>
-                <textarea name="message" id="message" class="form-control" rows="4" required="required"></textarea>
-              </div>
-              <div class="modal-footer">
-                 <button type="submit" class="btn btn-info">Submit</button>
-              </div>
-            </form>
-          </div>
-        </div>
+      <div class="col-md-5">
+      <h1>Messages</h2>
+      <ul>
+      <% for(var i = 0; i < user.messages.length; i++){ %>
+        <li class = "message">
+          <h2><%=user.messages[i].subject%></h2>
+          <p><%=user.messages[i].content%></p>
+        </li>
+      <% } %>
+      </ul>
       </div>
-
     </div>
-    
   </div>
 </body>
-
-</html>
-
-

@@ -8,6 +8,8 @@ $(document).ready(function(){
 		window.location = "/profile/"+targetUser;
 	});
 
+
+
 	// http://localhost:3000/profile/asteryl
 	var sumName = $('#sumName').val();
 	console.log(sumName);
@@ -93,9 +95,26 @@ $(document).ready(function(){
 	 	$(".mostPlayedPic").append("<img src = http://ddragon.leagueoflegends.com/cdn/5.7.2/img/champion/"+data.image.full+">");
 	 });
 
+
+
 	 //TODO
 	 //render last 5 games if data.games[i].subType === "RANKED_SOLO_5x5"
 	 	
 	}
-
+	$("#messageForm").on("submit", function(e){
+		e.preventDefault();
+		console.log($("#subject").val());
+		var ourMessage = {
+			subject: $("#subject").val(),
+			content: $("#message").val()
+		};
+		$.ajax({
+			url: '/api/' +sumName +"/messages",
+			method: "POST",
+			data: ourMessage
+		}).done(function(data){
+			console.log(data);
+			$("#modal-id").modal('hide');
+		});
+	});
 });

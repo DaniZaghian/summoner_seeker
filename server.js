@@ -6,8 +6,9 @@ var app = express();
 var bodyParser = require("body-parser");
 var mongoose = require("mongoose");
 var session = require('express-session');
-var db = require("./models");
 var request = require('request');
+var Message = require('./models/message.js');
+var db = require("./models/index.js");
 
 app.set("view engine", "ejs");
 
@@ -128,7 +129,42 @@ app.get('/logout', function (req, res) {
   res.render('loggedout');
 });
 
+app.post("/api/:sumName/messages", function(req,res){
+	var messageContent = req.body;
+	var newMessage = new Message({subject: messageContent.subject, content: messageContent.content, sender: req.session.userId});
+	console.log(newMessage);
+	db.User.findOne({sumName: req.params.sumName}, function(err, userData){
+		userData.messages.push(newMessage);
+		userData.save();
+		console.log(userData);
+		res.send(userData);
+	});
+});
 
+app.get("/profile/:sumName/messages", function(req,res){
+	if(req.session.userId){
+		db.User.findOne({_id: req.session.userId}, function (err, currentUser) {
+			db.User.findOne({sumName: req.params.sumName}, function (err, foundUser) {
+		    if (!foundUser){
+		      console.log('database error: ', err);
+		      res.render('usernotfound', {currentUser: currentUser});
+		  	}
+		     else if(foundUser._id.toString() !== currentUser._id.toString()) {
+		     	console.log('foundUser is: ', foundUser, 'currentUser is: ', currentUser);
+		     	res.render("usernotFound", {currentUser: currentUser});
+		    } else {
+		      // render profile template with user's data
+		      console.log('founduser is: ' + foundUser);
+		      console.log('currentuser is ' + currentUser);
+		      res.render('messages', {user: foundUser, currentUser: currentUser});
+		    }
+	  		});
+  		});
+	}
+	else {
+		res.render('loggedout');
+	}
+});
 app.listen(process.env.PORT || 3000, function() {
   console.log("summoner seeker is running on port 3000");
 });
