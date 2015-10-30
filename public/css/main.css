@@ -112,6 +112,25 @@ p {
 .summonersItem h4 {
     color: silver;
 }
+
+.message p{
+    margin-top: -10px;
+    text-align: left;
+    background-color: rgba(200, 200, 200, 0.9);
+    padding: 10px;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+}
+.message h3{
+    text-align: left;
+    color: rgb(22,14,59);
+    font-weight: bold;
+    background-color: rgba(84,84,84, 0.9);
+    font-size: 20px;
+    padding: 8px;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+}
 /*navbar css*/
 
 .btn-info {
